@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Submitted</title>
+    {% include 'bootstrap.html' %}
+</head>
+<body>
+
+    {% include 'nav.html' %}
+    {% include 'banner.html' %}
+<div class="rounded">
+    <h1 class="text-center mt-2 mb-4">Sovian Careers</h1>
+    <p class="mb-4 text-center">Your application for the role of <b>{{job['title']}}</b> at Sovian has been submitted.</p>
+    
+    <div class="container rounded border border-primary">
+        <span class="mt-4">
+
+        <h4 class="mb-0">Full Name</h4>
+        <div class="mb-4"> {{application['full_name']}} </div>
+
+        <h4>Email</h4>
+        <div class="mb-4"> {{application['email']}} </div>
+
+        <h4>LinkedIn URL</h4>
+        <div class="mb-4"> {{application['linkedin_url']}} </div>
+
+        <h4>Education</h4>
+        <div class="mb-4"> {{application['education']}} </div>
+
+        <h4>Work Experience</h4>
+        <div class="mb-4"> {{application['work_experience']}} </div>
+
+        <h4>Resume URL</h4>
+        <div class="mb-4"> {{application['resume_url']}} </div>
+
+        </span>
+    </div>  
+</div>      
+
+    {% include 'footer.html' %}
+
+</body>
+</html>
