@@ -7,7 +7,7 @@ app = Flask(__name__)
 def home():
   return render_template('firstpage.html')
 
-@app.route("/applicants")
+@app.route("/home")
 def hello_Sovian():
     jobs_list= load_jobs_from_db()
     return render_template('home.html', jobs=jobs_list)
