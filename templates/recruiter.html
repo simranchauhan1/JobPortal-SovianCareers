@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Recruiters Page</title>
+    {% include 'bootstrap.html' %}
+    <!-- <link rel="stylesheet" type="text/css" href="../static/css/styles.css"> -->
+</head>
+<body class="p-4 mb-2 bg-primary-subtle text-primary-emphasis justify-content-center align-items-center vh-100">
+    {% include 'nav.html' %}
+    <!-- {% include 'banner.html' %} -->
+
+    <div class="p-4 mb-2 bg-primary-subtle text-primary-emphasis border border-1 rounded text-center ms-auto">
+
+        <div>
+            <h1>Welcome to Sovian Careers</h1>
+        </div>
+
+        <div class="firstpage">
+            <a type="button" class="btn btn-secondary m-2" href="/add_jobs">Add Jobs</a>
+            <a type="button" class="btn btn-secondary m-2" href="/see_applicants">Applicants</a>
+        </div>
+
+    </div>
+    {% include 'footer.html' %}
+</body>
+</html>
+

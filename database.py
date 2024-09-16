@@ -37,3 +37,28 @@ def add_application_to_db(job_id, data):
                      work_experience = data['work_experience'],
                      resume_url = data['resume_url']
                     )
+       
+def see_applicants():
+  with engine.connect() as conn:
+    result = conn.execute(text("select * from applicaTions"))
+    result_dicts = []
+    for row in result._allrows():
+      result_dicts.append(dict(row._mapping))
+
+    return result_dicts   
+
+def add_job_to_db(data):
+    with engine.connect() as conn:
+        query = text("""
+            INSERT INTO jobs (id, title, location, salary, currency, responsibilities, requirements)
+            VALUES (:job_title, :location, :salary, :currency, :responsibilities, :requirements);
+        """)
+        conn.execute(query, id=data['id'],
+                     title=data['title'], 
+                     location=data['location'], 
+                     salary=data['salary'],
+                     currency=data['currency'], 
+                     responsibilities=data['responsibilities'], 
+                     requirements=data['requirements'])
+        conn.commit()        
+        
