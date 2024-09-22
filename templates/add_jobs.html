@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add-Jobs</title>
+    {% include 'bootstrap.html' %}
+</head>
+<body>
+
+  {% include 'nav.html' %}
+  {% include 'banner.html' %}
+
+  <div class="container m-4">
+    <!-- templates/add_job.html -->
+  <form action="/add_jobs" method="POST">
+
+    <div>
+      <label for="id">Job Id:</label><br>
+      <input type="text"  name="id" required><br><br>
+    </div>
+
+    <div>
+      <label for="title">Job Title:</label><br>
+      <input type="text"  name="title" required><br><br>
+    </div>
+
+    <div>
+      <label for="location">Job Location:</label><br>
+      <input type="text"  name="location" required><br><br>
+    </div>
+
+    <div>
+      <label for="Salary">Job Salary:</label><br>
+      <input type="number"  name="salary" required><br><br>
+    </div>
+  
+    <div>
+      <label for="currency">Currency:</label><br>
+      <input type="text" name="currency" required><br><br>
+    </div>
+  
+    <div>
+      <label for="responsibilities">Job Responsibilities:</label><br>
+      <textarea type="text"  name="responsibilities" required></textarea><br><br>
+    </div>
+  
+    <div>
+      <label for="requirements">Job Requirements:</label><br>
+      <textarea type="text"  name="requirements" required></textarea><br><br>
+    </div>
+  
+    <input class="btn btn-outline-primary" type="submit" name="submit">
+    
+  </form>
+  </div>
+  
+  {% include 'footer.html' %}
+
+</body>
+</html>

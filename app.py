@@ -37,15 +37,23 @@ def apply_to_job(id):
     add_application_to_db(id, data)
     return render_template('form_submitted.html', application = data, job=job)
 
-@app.route("/recruiter/add_job", methods=['post'])
-def add_job():
-  data= request.form
-  add_job_to_db(data)
-  return "inserted_successfully"     
+#addin a job
 
-@app.route("/add_jobs")
-def add_jobs():
-  return render_template('add_job.html')
+# @app.route("/recruiter/add_jobs", methods=['POST'])
+# def job_added_through_app():
+#   data= request.form
+#   add_job_to_db(data)
+#   return render_template('add_jobs.html', job=data)    
+
+@app.route("/add_jobs", methods=['GET', 'POST'])
+def job_added_through_app():
+    if request.method == 'POST':
+        data = request.form
+        add_job_to_db(data)
+        return render_template('added_jobs.html', job=data)  # Render the success page
+    else:
+        return render_template('add_jobs.html')  # Render the form when accessed via GET
+
 
 @app.route("/see_applicants")  
 def job_aspirants():
@@ -53,7 +61,6 @@ def job_aspirants():
   print(application)
   return render_template('see_applicants.html', application=application) 
     
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

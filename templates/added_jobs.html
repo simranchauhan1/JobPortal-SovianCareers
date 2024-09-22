@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Submitted</title>
+    {% include 'bootstrap.html' %}
+</head>
+<body>
+
+    {% include 'nav.html' %}
+    {% include 'banner.html' %}
+<div class="rounded">
+    <h1 class="text-center mt-2 mb-4">Sovian Careers</h1>
+    <p class="mb-4 text-center">The job has been added successfully.</p>
+    
+    <div class="container rounded border border-primary">
+        <span class="mt-4">
+
+        <h4 class="mb-0">id</h4>
+        <div class="mb-4"> {{job['id']}} </div>
+
+        <h4>Title</h4>
+        <div class="mb-4"> {{job['title']}} </div>
+
+        <h4>Location</h4>
+        <div class="mb-4"> {{job['location']}} </div>
+
+        <h4>Salary</h4>
+        <div class="mb-4"> {{job['Salary']}} </div>
+
+        <h4>Currency</h4>
+        <div class="mb-4"> {{job['Currency']}} </div>
+
+        <h4>Responsibilities</h4>
+        <div class="mb-4"> {{job['responsibilities']}} </div>
+
+        <h4>Requirements</h4>
+        <div class="mb-4"> {{job['requirements']}} </div>
+
+        </span>
+    </div>  
+</div>      
+
+    {% include 'footer.html' %}
+
+</body>
+</html>

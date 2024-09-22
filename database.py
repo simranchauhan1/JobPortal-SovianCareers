@@ -40,7 +40,7 @@ def add_application_to_db(job_id, data):
        
 def see_applicants():
   with engine.connect() as conn:
-    result = conn.execute(text("select * from applicaTions"))
+    result = conn.execute(text("select * from applications"))
     result_dicts = []
     for row in result._allrows():
       result_dicts.append(dict(row._mapping))
@@ -49,10 +49,8 @@ def see_applicants():
 
 def add_job_to_db(data):
     with engine.connect() as conn:
-        query = text("""
-            INSERT INTO jobs (id, title, location, salary, currency, responsibilities, requirements)
-            VALUES (:job_title, :location, :salary, :currency, :responsibilities, :requirements);
-        """)
+        query = text("INSERT INTO jobs (id, title, location, salary, currency, responsibilities, requirements) VALUES (:id, :title, :location, :salary, :currency, :responsibilities, :requirements)")
+        
         conn.execute(query, id=data['id'],
                      title=data['title'], 
                      location=data['location'], 
@@ -60,5 +58,5 @@ def add_job_to_db(data):
                      currency=data['currency'], 
                      responsibilities=data['responsibilities'], 
                      requirements=data['requirements'])
-        conn.commit()        
+               
         
