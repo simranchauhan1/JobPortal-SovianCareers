@@ -7,14 +7,14 @@ load_dotenv()
 db_connection_string = os.getenv('DB_CONNECTION_STRING')
 engine = create_engine(db_connection_string)
 
-def load_jobs_from_db():
-    with engine.connect() as conn:
-        result = conn.execute(text("select * from jobs"))
+# def load_jobs_from_db():
+#     with engine.connect() as conn:
+#         result = conn.execute(text("select * from jobs"))
      
-    jobs = []
-    for row in result.all():
-        jobs.append(dict(row))
-    return jobs
+#     jobs = []
+#     for row in result.all():
+#         jobs.append(dict(row))
+#     return jobs
      
 def load_job_from_db(id):
     with engine.connect() as conn:
@@ -24,6 +24,16 @@ def load_job_from_db(id):
             return None
         else:
             return dict(rows[0])
+        
+#trial
+def load_jobs_from_db():
+    with engine.connect() as conn:
+        result = conn.execute(text("SELECT * FROM jobs"))
+        jobs = []
+        for row in result:
+            print(row)  # Or use logging
+            jobs.append(dict(row))  # This line is causing the error
+    return jobs        
     
 def add_application_to_db(job_id, data):
     with engine.connect() as conn:
