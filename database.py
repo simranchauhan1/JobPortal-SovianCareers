@@ -31,9 +31,18 @@ def load_jobs_from_db():
         result = conn.execute(text("SELECT * FROM jobs"))
         jobs = []
         for row in result:
-            print(row)  # Or use logging
-            jobs.append(dict(row))  # This line is causing the error
-    return jobs        
+            # Assuming the columns in the "jobs" table are in this order:
+            jobs.append({
+                "id": row[0],
+                "title": row[1],
+                "location": row[2],
+                "salary": row[3],
+                "currency": row[4],
+                "description": row[5],
+                "requirements": row[6]
+            })
+    return jobs
+       
     
 def add_application_to_db(job_id, data):
     with engine.connect() as conn:
