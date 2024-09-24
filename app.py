@@ -30,12 +30,28 @@ def show_job(id):
     
     return render_template('jobpage.html', job=job)
 
+# @app.route("/job/<id>/apply", methods=['post'])
+# def apply_to_job(id):
+#     data = request.form
+#     job=load_job_from_db(id)
+#     add_application_to_db(id, data)
+#     return render_template('form_submitted.html', application = data, job=job)
+
+#trail code
 @app.route("/job/<id>/apply", methods=['post'])
 def apply_to_job(id):
-    data = request.form
-    job=load_job_from_db(id)
-    add_application_to_db(id, data)
-    return render_template('form_submitted.html', application = data, job=job)
+    try:
+        data = request.form
+        job = load_job_from_db(id)
+        if not job:
+            return "Job not found", 404
+        
+        add_application_to_db(id, data)
+        return render_template('form_submitted.html', application=data, job=job)
+    except Exception as e:
+        print(f"Error processing application: {e}")  # Log the error
+        return "An error occurred while processing your application.", 500
+
 
 #addin a job
 
