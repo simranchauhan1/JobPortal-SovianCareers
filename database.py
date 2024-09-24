@@ -44,18 +44,38 @@ def load_jobs_from_db():
     return jobs
        
     
-def add_application_to_db(job_id, data):
-    with engine.connect() as conn:
-        query = text("INSERT INTO applications (job_id, full_name, email, linkedin_url, education, work_experience, resume_url) VALUES (:job_id, :full_name, :email, :linkedin_url, :education, :work_experience, :resume_url )")
+# def add_application_to_db(job_id, data):
+#     with engine.connect() as conn:
+#         query = text("INSERT INTO applications (job_id, full_name, email, linkedin_url, education, work_experience, resume_url) VALUES (:job_id, :full_name, :email, :linkedin_url, :education, :work_experience, :resume_url )")
         
-        conn.execute(query, job_id = job_id,
-                     full_name = data['full_name'],
-                     email = data['email'],
-                     linkedin_url = data['linkedin_url'],
-                     education = data['education'],
-                     work_experience = data['work_experience'],
-                     resume_url = data['resume_url']
-                    )
+#         conn.execute(query, job_id = job_id,
+#                      full_name = data['full_name'],
+#                      email = data['email'],
+#                      linkedin_url = data['linkedin_url'],
+#                      education = data['education'],
+#                      work_experience = data['work_experience'],
+#                      resume_url = data['resume_url']
+#                     )
+ 
+#code trial
+def add_application_to_db(job_id, data):
+    try:
+        with engine.connect() as conn:
+            query = text("""
+                INSERT INTO applications (job_id, full_name, email, linkedin_url, education, work_experience, resume_url)
+                VALUES (:job_id, :full_name, :email, :linkedin_url, :education, :work_experience, :resume_url)
+            """)
+            conn.execute(query, 
+                         job_id=job_id,
+                         full_name=data['full_name'],
+                         email=data['email'],
+                         linkedin_url=data['linkedin_url'],
+                         education=data['education'],
+                         work_experience=data['work_experience'],
+                         resume_url=data['resume_url'])
+    except Exception as e:
+        print(f"Error adding application: {e}")  # Print the error for debugging
+ 
        
 def see_applicants():
   with engine.connect() as conn:
