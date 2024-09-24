@@ -16,14 +16,30 @@ engine = create_engine(db_connection_string)
 #         jobs.append(dict(row))
 #     return jobs
      
+# def load_job_from_db(id):
+#     with engine.connect() as conn:
+#         result = conn.execute(text("select * from jobs where id = :val"), val=id) 
+#         rows = result.all()
+#         if len(rows) == 0:
+#             return None
+#         else:
+#             return dict(rows[0])
+
 def load_job_from_db(id):
     with engine.connect() as conn:
         result = conn.execute(text("select * from jobs where id = :val"), val=id) 
         rows = result.all()
+
+        # Debugging print statements
+        print(f"Query result for job ID {id}: {rows}")
+
         if len(rows) == 0:
+            print(f"No job found with id: {id}")
             return None
         else:
+            print(f"Job found: {rows[0]}")
             return dict(rows[0])
+
         
 #trial
 def load_jobs_from_db():
