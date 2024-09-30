@@ -18,17 +18,19 @@ def load_jobs_from_db():
      
 from sqlalchemy import text
 
-def load_job_from_db(id):
+from sqlalchemy import text
+
+def load_jobs_from_db():
     with engine.connect() as conn:
-        # Use a dictionary to pass the parameter for SQL query
-        result = conn.execute(text("select * from jobs where id = :val"), {"val": id})
-        rows = result.all()
+        result = conn.execute(text("select * from jobs"))
+        jobs = []
         
-        if len(rows) == 0:
-            return None
-        else:
-            # Convert the first row to a dictionary
-            return dict(rows[0]._mapping)  # Use _mapping to convert result to dict
+        for row in result:
+            # Access row as dictionary using _mapping
+            jobs.append(dict(row._mapping))
+        
+        return jobs
+
 
        
     
