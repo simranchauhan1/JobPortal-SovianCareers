@@ -61,14 +61,18 @@ def see_applicants():
 
 def add_job_to_db(data):
     with engine.connect() as conn:
-        query = text("INSERT INTO jobs (id, title, location, salary, currency, responsibilities, requirements) VALUES (:id, :title, :location, :salary, :currency, :responsibilities, :requirements)")
+        query = text("""
+            INSERT INTO jobs (id, title, location, salary, currency, responsibilities, requirements)
+            VALUES (:id, :title, :location, :salary, :currency, :responsibilities, :requirements)
+        """)
         
-        conn.execute(query, id=data['id'],
-                     title=data['title'], 
-                     location=data['location'], 
-                     salary=data['salary'],
-                     currency=data['currency'], 
-                     responsibilities=data['responsibilities'], 
-                     requirements=data['requirements'])
-               
-        
+        conn.execute(query, {
+            'id': data['id'],
+            'title': data['title'], 
+            'location': data['location'], 
+            'salary': data['salary'],
+            'currency': data['currency'], 
+            'responsibilities': data['responsibilities'], 
+            'requirements': data['requirements']
+        })
+        conn.commit()
